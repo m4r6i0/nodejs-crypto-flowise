@@ -1,0 +1,40 @@
+{
+  "name": "nodejs-crypto-flowise",
+  "version": "1.0.0",
+  "description": "Node.js project integrating Flowise with cryptocurrency data",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "lint": "eslint .",
+    "test": "jest --coverage",
+    "prettify": "prettier --write ."
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "express": "^4.18.2",
+    "dotenv": "^16.0.3",
+    "swagger-ui-express": "^4.6.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^3.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "swagger",
+    "crypto",
+    "flowise",
+    "jest"
+  ],
+  "author": "Marcio Carvalho",
+  "license": "MIT"
+}

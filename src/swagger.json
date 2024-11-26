@@ -1,0 +1,89 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Crypto API",
+      "version": "1.0.0",
+      "description": "API para interagir com dados de criptomoedas e Flowise"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor local"
+      }
+    ],
+    "paths": {
+      "/crypto/price": {
+        "get": {
+          "summary": "Obter o preço atual do Bitcoin",
+          "responses": {
+            "200": {
+              "description": "Preço recuperado com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "cryptoId": { "type": "string" },
+                          "currency": { "type": "string" },
+                          "price": { "type": "number" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        }
+      },
+      "/crypto/question": {
+        "post": {
+          "summary": "Processar uma pergunta com o Flowise",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "question": { "type": "string" }
+                  },
+                  "required": ["question"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Resposta processada com sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "data": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Pergunta não fornecida"
+            },
+            "500": {
+              "description": "Erro interno do servidor"
+            }
+          }
+        }
+      }
+    }
+  }
+  
