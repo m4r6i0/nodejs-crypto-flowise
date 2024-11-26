@@ -1,0 +1,27 @@
+
+---
+
+### **`.gitignore`**
+
+```plaintext
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+#.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Tests outputs
+coverage/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
