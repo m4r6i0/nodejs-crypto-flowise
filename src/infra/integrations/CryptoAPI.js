@@ -11,8 +11,14 @@ class CryptoAPI {
    * @param {string} currency - O código da moeda (ex.: "usd").
    * @returns {Promise<Object>} - Um objeto contendo o preço atual da criptomoeda.
    */
+  
   static async fetchCryptoPrice(cryptoId, currency) {
     try {
+      
+      if (!CRYPTO_API_URL) {
+        throw new Error('A variável de ambiente CRYPTO_API_URL não está definida. Verifique seu arquivo .env');
+      }
+
       const url = `${CRYPTO_API_URL}/simple/price`;
       const response = await axios.get(url, {
         params: {

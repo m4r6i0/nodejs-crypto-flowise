@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { FLOWISE_API_URL } = process.env;
+const config = require('../../config');
 
 /**
  * Serviço responsável por interagir com o Flowise.
@@ -12,12 +12,18 @@ class FlowiseService {
    */
   static async processQuestion(question) {
     try {
-      const response = await axios.post(`${FLOWISE_API_URL}`, {
+      const response = await axios.post(`${config.api.flowiseUrl}`, {
         question,
       });
 
-      if (response.data && response.data.answer) {
-        return response.data.answer;
+      // Verifica se a resposta contém o texto esperado
+      if (response.data && response.data.text) {
+        return {
+          text: response.data.text, // Resposta do Flowise
+          question: response.data.question, // Pergunta enviada
+          chatId: response.data.chatId, // ID do chat (opcional)
+          chatMessageId: response.data.chatMessageId, // ID da mensagem no chat (opcional)
+        };
       }
 
       throw new Error('Resposta inválida do Flowise.');

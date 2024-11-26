@@ -1,11 +1,11 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const config = require('./config');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json'); // Arquivo Swagger em formato JSON
-const ErrorHandler = require('./src/app/middlewares/ErrorHandler');
-const cryptoRoutes = require('./src/app/routes/CryptoRoutes');
+const swaggerDocument = require('../swagger.json');
+const ErrorHandler = require('./app/middlewares/ErrorHandler');
+const cryptoRoutes = require('./app/routes/CryptoRoutes');
 
-dotenv.config();
+console.log('CRYPTO_API_URL:', config.api.cryptoUrl);
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use('/crypto', cryptoRoutes);
 app.use(ErrorHandler);
 
 // Inicializa o servidor
-const PORT = process.env.PORT || 3000;
+const PORT = config.app.port;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Swagger API docs available at http://localhost:${PORT}/api-docs`);
